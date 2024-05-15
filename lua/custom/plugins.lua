@@ -51,7 +51,7 @@ local plugins = {
     opts = {
       ensure_installed = {
         "typescript-language-server",
-        -- "tailwindcss-language-server",
+        "tailwindcss-language-server",
         "lua-language-server",
         "eslint-lsp",
         "js-debug-adapter",
@@ -134,7 +134,7 @@ local plugins = {
       transformation = "snakecase",
       skip_unexported = true,
       override = true,
-      -- options = { "json=omitempty" }
+      options = { "json=omitempty" }
     },
   }
 }
