@@ -136,6 +136,44 @@ local plugins = {
       override = true,
       options = { "json=omitempty" }
     },
+  },
+  {
+    "dreamsofcode-io/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup({
+        async_api_key_cmd = "pass show chatgpt/nvim",
+      })
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    },
+  },
+  {
+    "michaelrommel/nvim-silicon",
+    lazy = true,
+    cmd = "Silicon",
+    init = function()
+      local wk = require("which-key")
+      wk.register({
+        ["<leader>sc"] = { ":Silicon<CR>", "Snapshot Code" },
+      }, { mode = "v" })
+    end,
+    config = function()
+      require("silicon").setup({
+        font = "MesloLGL Nerd Font=20;MesloLGL Nerd Font Mono=20",
+        theme = "Monokai Extended",
+        background = "#fefefe",
+        no_line_number = false,
+        shadow_offset_x = 8,
+	      shadow_offset_y = 8,
+        window_title = function()
+          return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), ":t")
+        end
+      })
+    end
   }
 }
 return plugins
